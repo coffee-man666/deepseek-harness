@@ -244,6 +244,10 @@
       name: '@deepseek-ai/dsh-skill-badge'
       disabled: true
 
+    - id: dsh-skills
+      name: '@deepseek-ai/dsh-skills'
+      disabled: true
+
     - id: tool-skill
       name: '@deepseek-ai/dsh-tool-skill'
 
