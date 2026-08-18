@@ -34,6 +34,8 @@ The plugin can be mounted by a Cordis composition and is covered by the same dis
 
 The package adds a provider implementation and its assets to the Host aggregate, the base bundle dependency closure, and the generated capability graph. The provider has no mutable runtime state beyond the registry registration, so its invariant companion records ownership without adding a separate runtime check.
 
+The same suite is also packaged for Codex at [`plugins/dsh-skills`](../../../../plugins/dsh-skills); the separate manifest and loader choice are recorded in [the Codex plugin note](2026-08-18-codex-dsh-skills-plugin.md).
+
 ## Verification
 
 The package test mounts the real registry and provider, checks all three summaries, loads a body without frontmatter, verifies packaged reference and template resources, and confirms disposal removes the catalog.

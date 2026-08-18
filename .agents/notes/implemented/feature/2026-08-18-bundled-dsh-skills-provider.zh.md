@@ -34,6 +34,8 @@ base profile 会携带禁用的插件条目。部署必须明确启用该条目�
 
 该包将提供方实现和资源加入 Host aggregate、base bundle 依赖闭包以及生成的能力图。提供方除了注册表注册外不拥有可变运行时状态，因此其 invariant companion 只记录所有权，不增加独立的运行时检查。
 
+同一套件也以 Codex 插件形式放在 [`plugins/dsh-skills`](../../../../plugins/dsh-skills)；独立的 manifest 和加载器选择记录在[Codex 插件说明](2026-08-18-codex-dsh-skills-plugin.md)中。
+
 ## Verification
 
 包测试挂载真实注册表和提供方，检查三个摘要，加载一个不含 frontmatter 的正文，验证随包的参考资料和模板资源，并确认释放后目录被清空。
