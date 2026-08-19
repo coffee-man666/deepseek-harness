@@ -2,7 +2,7 @@
 name: "dsh-enhancement-analysis"
 description: "Analyze any project directly (recon report optional), map pain points onto DeepSeek Harness capabilities; produce a prioritized enhancement report."
 status: proposal
-version: "0.3.0"
+version: "0.3.1"
 date: "2026-08-19"
 ---
 
@@ -30,7 +30,7 @@ Five primitives define it (names verified against the v0.1.0-rc source; re-verif
 
 ## Locating the DSH source
 
-Resolve the local checkout before fact-checking, in order: the `$DSH_ROOT` environment variable; common locations (`~/git/deepseek-harness`, `~/CoffeeMan/deepseek-harness`); the GitHub repository `deepseek-ai/deepseek-harness` as last resort. Record the resolved path and commit in the report header; if only GitHub was available, or the checkout is older than the latest tag, say so.
+Resolve the local checkout before fact-checking, in order: the `$DSH_ROOT` environment variable; conventional checkout locations (`~/git/deepseek-harness`, `~/src/deepseek-harness`); the GitHub repository `deepseek-ai/deepseek-harness` as last resort. Record the resolved path and commit in the report header; if only GitHub was available, or the checkout is older than the latest tag, say so.
 
 ## Workflow
 

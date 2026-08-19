@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.1 — 2026-08-19
+
+- Publication hygiene: the DSH-source probe locations and repo-recon project-root examples use conventional directory names only; no operator-specific paths remain in the published artifacts.
+
 ## 0.3.0 — 2026-08-19
 
 - Corrected DSH primitive names against the v0.1.0-rc.7 source: subagent delegation (`ctx.subagents.start()`, fork/spawn providers) replaces the nonexistent `ctx.sessions.fork()`; `llm/stream` waterfall and `agent/request-error` documented as the retry/routing seams.

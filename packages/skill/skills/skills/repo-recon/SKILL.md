@@ -2,7 +2,7 @@
 name: "repo-recon"
 description: "Parallel read-only recon of local git projects via subagents for survey, deep-dive, or pre-enhancement analysis."
 status: proposal
-version: "0.3.0"
+version: "0.3.1"
 date: "2026-08-19"
 ---
 
@@ -22,7 +22,7 @@ Every subagent brief must state: READ-ONLY (never modify project files); method 
 
 ## Phase 0 — Triage (self, no subagent)
 
-1. List candidate projects from the roots the user named; if none were named, probe common project roots (e.g. `~/git/*/`, `~/Cursor/*/`, `~/src/*/`) and say which roots you scanned
+1. List candidate projects from the roots the user named; if none were named, probe conventional project roots (e.g. `~/git/*/`, `~/src/*/`, `~/projects/*/`) and say which roots you scanned
 2. Skim each README (first ~400 chars; if none, list top-level files)
 3. Filter by the user's stated criteria (example: "projects with LLM orchestration"). Skip infra/tooling repos unless asked
 4. If targets are ambiguous, present the candidate list and ask; otherwise proceed to Phase 1
