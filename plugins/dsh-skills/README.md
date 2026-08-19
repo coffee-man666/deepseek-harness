@@ -10,6 +10,14 @@ English | [中文](README.zh.md)
 
 The original suite resources, including references and report templates, are preserved under [`skills/`](skills/). The plugin is guidance-only: it does not modify repositories or roll out runtime policies automatically.
 
-## Install locally
+## Install
 
-Install this repository as a local plugin, or point Codex at `plugins/dsh-skills` when developing the plugin. The manifest is [`plugin.json`](.codex-plugin/plugin.json).
+From this repository's marketplace (requires a Codex build with plugin support):
+
+```sh
+codex plugin marketplace add https://github.com/coffee-man666/deepseek-harness \
+  --sparse .agents/plugins --sparse plugins/dsh-skills
+codex plugin add dsh-skills@deepseek-harness
+```
+
+For local development, point Codex at this checkout instead: `codex plugin marketplace add /path/to/deepseek-harness`. The manifest is [`plugin.json`](.codex-plugin/plugin.json); the suite version lives in [`skills/VERSION`](skills/VERSION) and must match every SKILL.md frontmatter, the manifest, and the provider metadata (enforced by `pnpm run verify-dsh-skills-sync` in this repository).

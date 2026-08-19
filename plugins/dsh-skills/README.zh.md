@@ -10,6 +10,14 @@
 
 原始套件资源，包括 references 和报告模板，都保留在 [`skills/`](skills/) 下。该插件只提供指引，不会自动修改仓库或发布运行时策略。
 
-## 本地安装
+## 安装
 
-可以将此仓库作为本地插件安装，或在开发插件时将 Codex 指向 `plugins/dsh-skills`。manifest 位于 [`plugin.json`](.codex-plugin/plugin.json)。
+从本仓库的 marketplace 安装（需要支持插件的 Codex 版本）：
+
+```sh
+codex plugin marketplace add https://github.com/coffee-man666/deepseek-harness \
+  --sparse .agents/plugins --sparse plugins/dsh-skills
+codex plugin add dsh-skills@deepseek-harness
+```
+
+本地开发时改为指向本 checkout：`codex plugin marketplace add /path/to/deepseek-harness`。manifest 位于 [`plugin.json`](.codex-plugin/plugin.json)；套件版本记录在 [`skills/VERSION`](skills/VERSION)，必须与每个 SKILL.md frontmatter、manifest、provider 元数据一致（由本仓库的 `pnpm run verify-dsh-skills-sync` 强制）。
