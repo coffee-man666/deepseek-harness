@@ -11,9 +11,9 @@ Use this as a diagnosis/intervention index, not as a checklist that must all be 
 | Stopping | extra turns after sufficient answer | confidence/evaluator/diminishing-return stop | turns, latency, quality | `agent/turn-stopping` |
 | Tool exposure | wrong-tool selection; huge tool menus | dynamic tool subsets by stage/task | tool error rate, calls, success | `ctx.tools` service / hook |
 | Tool reuse/cache | duplicate fetches or repeated computation | observation cache, memoization, freshness policy | duplicate calls, latency, cache hit | injected cache service |
-| Branching | hard tasks fail due to single path | selective fork by uncertainty/value | success gain per extra branch cost | `ctx.sessions.fork()` |
-| Branch control | branch explosion | width/depth budget; early prune | branches, cost, quality | fork/orchestrator policy |
-| Arbiter/merge | conflicting outputs; arbitrary choice | deterministic compare, judge, synthesize | disagreement resolution, quality | fork + judge plugin |
+| Branching | hard tasks fail due to single path | selective fork by uncertainty/value | success gain per extra branch cost | `ctx.subagents.start()` fork provider |
+| Branch control | branch explosion | width/depth budget; early prune | branches, cost, quality | delegation depth/orchestrator policy |
+| Arbiter/merge | conflicting outputs; arbitrary choice | deterministic compare, judge, synthesize | disagreement resolution, quality | parallel subagents + judge plugin |
 | Budget | easy tasks overspend; hard tasks run out of budget | task-class/stage budget allocation; recovery reserve | budget utilization, completion | request hook counters |
 | Execution world | host contamination/nondeterminism | container/VM provider by task | reproducibility, setup failures | `ctx.fs` / `ctx.subprocess` swap |
 | Session/memory | durable state polluted by scratch data | explicit durable/ephemeral/cache tiers | retrieval precision, state size | session service |

@@ -1,19 +1,23 @@
 # DSH Skills
 
-**Version: 0.2.0**
+**Version: 0.3.0**
 
 A small skill suite for inspecting agentic repositories, identifying where DeepSeek Harness (DSH) primitives add value, and then optimizing the runtime loop with controlled experiments.
 
 ## Skills
 
 ### 1. `repo-recon`
-Read-only architecture reconnaissance. Maps workflows, LLM call graphs, state/cache, retries/fallbacks, deployment, and orchestration pain points with evidence.
+Read-only architecture reconnaissance. Maps workflows, LLM call graphs, state/cache, retries/fallbacks, deployment, and orchestration pain points with evidence. Host-agnostic subagent delegation; sequential fallback when the host has no subagents.
 
 ### 2. `dsh-enhancement-analysis`
-Maps an existing project's orchestration pain points onto DSH primitives and produces an honest migration/enhancement roadmap: ✅ equivalent / ✅✅ stronger / ⚠️ hard port.
+Maps an existing project's orchestration pain points onto DSH primitives and produces an honest migration/enhancement roadmap: ✅ equivalent / ✅✅ stronger / ⚠️ hard port. Non-DSH findings and open questions get their own report sections.
 
-### 3. `harness-runtime-optimizer` — NEW in 0.2.0
+### 3. `harness-runtime-optimizer`
 Treats the harness as an experimentable runtime policy layer. Diagnoses waste and optimizes model routing, context, retry/fallback, stopping, tool exposure, branching/forking, merge/arbiter, budgets, sessions, and execution worlds using before/after metrics.
+
+## Artifact layout
+
+All suite artifacts live under one `dsh-scan/` workspace directory: `recon-scan-<group>.md`, `recon-deep-<project>.md`, `dsh-enhance-<project>.md`, `runtime-opt-<project>.md`.
 
 ## Recommended flow
 
