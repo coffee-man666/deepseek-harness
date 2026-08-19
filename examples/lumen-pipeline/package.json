@@ -1,0 +1,7 @@
+{
+  "name": "lumen-pipeline-example",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "description": "Metadata only: Lumen report pipeline on the DSH llm stack (facade migration demo). Wiring lives in cordis.yml and driver.ts."
+}
