@@ -2,7 +2,7 @@
 name: "harness-runtime-optimizer"
 description: "Observe, experiment on, and optimize an agent harness runtime loop as a policy layer: routing, context, retry, stopping, tools, branching, budgeting, and execution-world policies. Designed for DSH but usable as a harness-neutral methodology."
 status: proposal
-version: "0.3.1"
+version: "0.3.2"
 date: "2026-08-19"
 ---
 

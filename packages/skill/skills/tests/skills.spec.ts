@@ -23,7 +23,7 @@ describe('dsh-skills', () => {
     const enhancement = await ctx.skills.get('dsh-enhancement-analysis')
     expect(enhancement?.content).toMatch(/^# DSH Enhancement Analysis/m)
     expect(enhancement?.content).not.toMatch(/^---$/m)
-    expect(enhancement?.metadata).toEqual({ status: 'proposal', version: '0.3.1', date: '2026-08-19' })
+    expect(enhancement?.metadata).toEqual({ status: 'proposal', version: '0.3.2', date: '2026-08-19' })
     expect(enhancement?.resourceBase?.kind).toBe('directory')
 
     const resourceBase = enhancement?.resourceBase

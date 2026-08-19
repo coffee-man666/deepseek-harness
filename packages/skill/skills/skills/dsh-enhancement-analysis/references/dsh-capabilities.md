@@ -1,6 +1,6 @@
 # DSH Capability Map
 
-Fact-checked against the DSH source at v0.1.0-rc.7 (commit 6abc3ca8c9, 2026-08-19) by reading `packages/llm`, `packages/subagent`, `packages/guard`, `packages/session`. DSH is pre-1.0 and makes no compatibility promise — re-verify names against the source if this file is older than the checkout you are analyzing.
+Fact-checked against the DSH source: v0.1.0-rc.7 (commit 6abc3ca8c9) and re-verified unchanged on v0.1.0-rc.8 (commit 141eb6fef8, 2026-08-19) by reading `packages/llm`, `packages/subagent`, `packages/guard`, `packages/session`; the mapped surfaces (pi-ai profile fields, subagent start request, retry/meter seams) did not change between the two. DSH is pre-1.0 and makes no compatibility promise — re-verify names against the source if this file is older than the checkout you are analyzing.
 
 ## Core primitives
 

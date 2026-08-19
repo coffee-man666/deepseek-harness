@@ -2,7 +2,7 @@
 name: "dsh-enhancement-analysis"
 description: "Analyze any project directly (recon report optional), map pain points onto DeepSeek Harness capabilities; produce a prioritized enhancement report."
 status: proposal
-version: "0.3.1"
+version: "0.3.2"
 date: "2026-08-19"
 ---
 

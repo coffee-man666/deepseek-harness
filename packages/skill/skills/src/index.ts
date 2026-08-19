@@ -13,7 +13,7 @@ import {
 const PROVIDER_NAME = 'dsh-skills'
 const INVOCATION = { modelInvocable: true, userInvocable: true } as const
 const SOURCE = 'bundled' as const
-const METADATA = { status: 'proposal', version: '0.3.1', date: '2026-08-19' } as const
+const METADATA = { status: 'proposal', version: '0.3.2', date: '2026-08-19' } as const
 
 interface BundledSkill {
   readonly name: string
