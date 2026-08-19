@@ -1,5 +1,7 @@
 # lumen-pipeline
 
+English | [中文](README.zh.md)
+
 The Lumen report-to-dashboard pipeline (from the open-source
 [vibe-report-dashboard](https://github.com/coffee-man666/vibe-report-dashboard)
 project) run on the DSH llm stack as a **facade migration demo**: the target
