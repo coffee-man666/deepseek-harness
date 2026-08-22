@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0 — 2026-08-22
+
+- Added `publish-screen`: four-surface leak screening (tracked content, tracked paths, git history, fork-scoped own commits), false-positive triage rules, and fix procedures ranging from scrubbing to fresh-history rebuilds to private-flip containment.
+
 ## 0.3.2 — 2026-08-19
 
 - Re-verified the capability map against upstream v0.1.0-rc.8 after merging: the mapped surfaces (pi-ai profile fields, subagent start request, retry/meter seams) are unchanged; the schema-subset and AgentOptions findings remain open.

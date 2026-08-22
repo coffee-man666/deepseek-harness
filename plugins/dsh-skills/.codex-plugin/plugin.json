@@ -1,6 +1,6 @@
 {
   "name": "dsh-skills",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "Repository analysis and agent-harness runtime optimization skills for Codex.",
   "author": {
     "name": "DeepSeek Harness contributors",

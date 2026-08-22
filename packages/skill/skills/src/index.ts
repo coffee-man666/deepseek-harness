@@ -13,7 +13,7 @@ import {
 const PROVIDER_NAME = 'dsh-skills'
 const INVOCATION = { modelInvocable: true, userInvocable: true } as const
 const SOURCE = 'bundled' as const
-const METADATA = { status: 'proposal', version: '0.3.2', date: '2026-08-19' } as const
+const METADATA = { status: 'proposal', version: '0.4.0', date: '2026-08-22' } as const
 
 interface BundledSkill {
   readonly name: string
@@ -29,6 +29,11 @@ type BundledCandidate = SkillCandidate & {
 }
 
 const BUNDLED_SKILLS: readonly BundledSkill[] = [
+  {
+    name: 'publish-screen',
+    description: 'Screen a repository for sensitive information before or after making it public: tracked content, file and directory paths, git history, identity terms, credential patterns; fix by scrubbing, fresh-history rebuild, or going private.',
+    body: new URL('../skills/publish-screen/SKILL.md', import.meta.url),
+  },
   {
     name: 'dsh-enhancement-analysis',
     description: 'Analyze any project directly (recon report optional), map pain points onto DeepSeek Harness capabilities; produce a prioritized enhancement report.',

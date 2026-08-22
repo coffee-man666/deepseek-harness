@@ -2,7 +2,7 @@
 name: "repo-recon"
 description: "Parallel read-only recon of local git projects via subagents for survey, deep-dive, or pre-enhancement analysis."
 status: proposal
-version: "0.3.2"
+version: "0.4.0"
 date: "2026-08-19"
 ---
 

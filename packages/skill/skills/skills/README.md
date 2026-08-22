@@ -9,10 +9,13 @@ A small skill suite for inspecting agentic repositories, identifying where DeepS
 ### 1. `repo-recon`
 Read-only architecture reconnaissance. Maps workflows, LLM call graphs, state/cache, retries/fallbacks, deployment, and orchestration pain points with evidence. Host-agnostic subagent delegation; sequential fallback when the host has no subagents.
 
-### 2. `dsh-enhancement-analysis`
+### 2. `publish-screen` — NEW in 0.4.0
+Screens a repository before it goes public: tracked content, file/directory paths, git history, identity terms, credential patterns; fix procedures from sed-scrub to fresh-history rebuild to private-flip containment.
+
+### 3. `dsh-enhancement-analysis`
 Maps an existing project's orchestration pain points onto DSH primitives and produces an honest migration/enhancement roadmap: ✅ equivalent / ✅✅ stronger / ⚠️ hard port. Non-DSH findings and open questions get their own report sections.
 
-### 3. `harness-runtime-optimizer`
+### 4. `harness-runtime-optimizer`
 Treats the harness as an experimentable runtime policy layer. Diagnoses waste and optimizes model routing, context, retry/fallback, stopping, tool exposure, branching/forking, merge/arbiter, budgets, sessions, and execution worlds using before/after metrics.
 
 ## Artifact layout
