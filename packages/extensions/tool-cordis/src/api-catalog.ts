@@ -1005,6 +1005,31 @@ export const SERVICE_API: readonly ServiceApiEntry[] = [
     ],
   },
   {
+    key: 'mobileAgentConsole',
+    summary: 'Host service exposing the mobile Agent console and shared memory.',
+    description: 'Host service exposing the mobile Agent console and shared memory.',
+    methods: [
+      {
+        signature: 'async remember(agent: Agent, content: string, tags: readonly string[]): Promise<MemoryEntry>',
+        description: 'Store one model-selected memory record for the calling Agent\'s project.',
+        parameters: [{ name: 'agent', description: 'Agent that selected the record and owns its project cwd.' }, { name: 'content', description: 'concise durable fact to store.' }, { name: 'tags', description: 'retrieval tags for the fact.' }],
+        returns: 'the durable memory record that was appended.',
+      },
+      {
+        signature: 'async recall(agent: Agent, query: string, limit: number = 8): Promise<MemoryEntry[]>',
+        description: 'Recall relevant memory records for the calling Agent\'s project.',
+        parameters: [{ name: 'agent', description: 'Agent whose project memory should be searched.' }, { name: 'query', description: 'lexical search terms; empty text returns recent records.' }, { name: 'limit', description: 'maximum number of records to return.' }],
+        returns: 'matching memory records ordered by relevance and recency.',
+      },
+      {
+        signature: 'async snapshot(): Promise<DashboardSnapshot>',
+        description: 'Build the current human-facing dashboard snapshot from live registries and durable logs.',
+        parameters: [],
+        returns: 'the current Agent, Team, usage, memory, route, and quota projection.',
+      },
+    ],
+  },
+  {
     key: 'permissionPresets',
     summary: 'Owns the deployment\'s permission presets and their write path.',
     description: 'Owns the deployment\'s permission presets and their write path. Requires a confining `ctx.shell` executor and `ctx.approval`; unmatched knob values are reported as CUSTOM_PRESET, not an error.',
@@ -2761,6 +2786,10 @@ export const TYPE_API: readonly TypeApiEntry[] = [
     declaration: 'export type AgentStatus = \'idle\' | \'running\';',
   },
   {
+    name: 'AgentWire',
+    declaration: 'export interface AgentWire {\n    readonly id: string;\n    readonly name: string;\n    readonly role: \'lead\' | \'teammate\' | \'agent\';\n    readonly status: \'idle\' | \'running\' | \'inactive\' | \'provisioning\' | \'failed\';\n    readonly provider?: string;\n    readonly model?: string;\n    readonly cwd?: string;\n    readonly parentId?: string;\n    readonly usage: UsageWire;\n}',
+  },
+  {
     name: 'ApprovalOutcome',
     declaration: 'export type ApprovalOutcome = \'allowed-once\' | \'rejected\' | \'cancelled\' | \'unavailable\';',
   },
@@ -3035,6 +3064,10 @@ export const TYPE_API: readonly TypeApiEntry[] = [
   {
     name: 'CredentialRef',
     declaration: 'export type CredentialRef = Branded<\'CredentialRef\'>;',
+  },
+  {
+    name: 'DashboardSnapshot',
+    declaration: 'export interface DashboardSnapshot {\n    readonly generatedAt: number;\n    readonly route: {\n        readonly provider: string;\n        readonly model: string;\n    };\n    readonly agents: readonly AgentWire[];\n    readonly teams: readonly TeamWire[];\n    readonly usage: UsageWire;\n    readonly memories: readonly MemoryWire[];\n    readonly quota: QuotaWire;\n}',
   },
   {
     name: 'DiffCallView',
@@ -3485,6 +3518,10 @@ export const TYPE_API: readonly TypeApiEntry[] = [
     declaration: 'export interface ManualCompactAgentContext extends CompactionAgentContext {\n    runMaintenance<T>(task: (signal: AbortSignal) => Promise<T>): Promise<T>;\n}',
   },
   {
+    name: 'MemoryWire',
+    declaration: 'export interface MemoryWire {\n    readonly id: string;\n    readonly time: number;\n    readonly content: string;\n    readonly tags: readonly string[];\n    readonly agentId: string;\n    readonly cwd: string;\n}',
+  },
+  {
     name: 'Message',
     declaration: 'export interface Message {\n    readonly id: MessageId;\n    readonly role: \'system\' | \'user\' | \'assistant\';\n    readonly content: ContentBlock[];\n    readonly source: MessageSource;\n}',
   },
@@ -3679,6 +3716,14 @@ export const TYPE_API: readonly TypeApiEntry[] = [
   {
     name: 'PruneResult',
     declaration: 'export interface PruneResult {\n    readonly pruned: readonly PrunedEntry[];\n    readonly charsRemoved: number;\n}',
+  },
+  {
+    name: 'QuotaWindowWire',
+    declaration: 'export interface QuotaWindowWire {\n    readonly name: string;\n    readonly usedPercent?: number;\n    readonly remaining?: number;\n    readonly resetAt?: string;\n}',
+  },
+  {
+    name: 'QuotaWire',
+    declaration: 'export interface QuotaWire {\n    readonly provider: string;\n    readonly available: boolean;\n    readonly windows: readonly QuotaWindowWire[];\n    readonly error?: string;\n}',
   },
   {
     name: 'ReadFileLine',
@@ -4401,6 +4446,10 @@ export const TYPE_API: readonly TypeApiEntry[] = [
     declaration: 'export interface TeamMemberView {\n    readonly id: SessionId;\n    readonly name: string;\n    readonly role: \'lead\' | \'teammate\';\n    readonly status: \'running\' | \'idle\' | \'inactive\' | \'provisioning\' | \'failed\';\n    readonly description?: string;\n    readonly provider?: string;\n    readonly context?: \'fresh\' | \'fork\';\n    readonly model?: string;\n    readonly diagnostics: string[];\n}',
   },
   {
+    name: 'TeamMemberWire',
+    declaration: 'export interface TeamMemberWire {\n    readonly id: string;\n    readonly name: string;\n    readonly role: \'lead\' | \'teammate\';\n    readonly status: AgentWire[\'status\'];\n    readonly description?: string;\n    readonly provider?: string;\n    readonly context?: \'fresh\' | \'fork\';\n    readonly model?: string;\n    readonly diagnostics: readonly string[];\n}',
+  },
+  {
     name: 'TeamMessageId',
     declaration: 'export type TeamMessageId = Branded<\'TeamMessageId\'>;',
   },
@@ -4421,8 +4470,16 @@ export const TYPE_API: readonly TypeApiEntry[] = [
     declaration: 'export interface TeamTaskView {\n    readonly id: TeamTaskId;\n    readonly revision: number;\n    readonly subject: string;\n    readonly description: string;\n    readonly status: TeamTaskStatus;\n    readonly blockedBy: TeamTaskId[];\n    readonly writeScopes: string[];\n    readonly ownerName?: string;\n    readonly ready: boolean;\n    readonly writeScopeWarnings: string[];\n}',
   },
   {
+    name: 'TeamTaskWire',
+    declaration: 'export interface TeamTaskWire {\n    readonly id: string;\n    readonly revision: number;\n    readonly subject: string;\n    readonly description: string;\n    readonly status: \'pending\' | \'in_progress\' | \'completed\' | \'deleted\';\n    readonly blockedBy: readonly string[];\n    readonly writeScopes: readonly string[];\n    readonly ownerName?: string;\n    readonly ready: boolean;\n    readonly warnings: readonly string[];\n}',
+  },
+  {
     name: 'TeamWaitResult',
     declaration: 'export interface TeamWaitResult {\n    readonly timedOut: boolean;\n}',
+  },
+  {
+    name: 'TeamWire',
+    declaration: 'export interface TeamWire {\n    readonly id: string;\n    readonly leadId: string;\n    readonly members: readonly TeamMemberWire[];\n    readonly tasks: readonly TeamTaskWire[];\n}',
   },
   {
     name: 'TerminalBackend',
@@ -4707,6 +4764,10 @@ export const TYPE_API: readonly TypeApiEntry[] = [
   {
     name: 'UpdateTeamTaskRequest',
     declaration: 'export interface UpdateTeamTaskRequest {\n    readonly taskId: TeamTaskId;\n    readonly expectedRevision: number;\n    readonly action: TeamTaskAction;\n    readonly subject?: string;\n    readonly description?: string;\n    readonly blockedBy?: readonly TeamTaskId[];\n    readonly writeScopes?: readonly string[];\n    readonly owner?: string;\n}',
+  },
+  {
+    name: 'UsageWire',
+    declaration: 'export interface UsageWire {\n    readonly inputTokens: number;\n    readonly outputTokens: number;\n    readonly cacheReadTokens: number;\n    readonly cacheWriteTokens: number;\n    readonly reasoningTokens: number;\n    readonly steps: number;\n}',
   },
   {
     name: 'UserMessage',

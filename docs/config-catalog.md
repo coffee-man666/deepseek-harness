@@ -611,6 +611,46 @@ export interface Config {
 
 Source: [`packages/experimental/agent-team/src/types.ts:125`](../packages/experimental/agent-team/src/types.ts)
 
+<a id="deepseek-aidsh-experimental-mobile-agent-console"></a>
+
+## `@deepseek-ai/dsh-experimental-mobile-agent-console`
+
+Requires: `webServer` · `agents` · `agentTeams` · `credentials` · `tools` · `systemPrompt`
+
+```ts config-catalog
+/** Configuration for the mobile console and its optional LAN gateway. */
+export interface Config {
+  /** Directory for the project-shared `memory.jsonl`; relative paths use each session cwd. */
+  readonly memoryDirectory?: string
+  /** Maximum records returned by one memory read or dashboard snapshot. */
+  readonly maxMemoryEntries?: number
+  /** Maximum UTF-8 bytes injected into one model request as memory context. */
+  readonly maxMemoryContextBytes?: number
+  /** Whether to start the authenticated mobile gateway. */
+  readonly gatewayEnabled?: boolean
+  /** Gateway bind host; all-interfaces is intended for a trusted LAN or VPN. */
+  readonly gatewayHost?: '127.0.0.1' | '0.0.0.0'
+  /** Gateway TCP port. */
+  readonly gatewayPort?: number
+  /** Process environment name containing the gateway access token. */
+  readonly tokenEnv?: string
+  /** Credential reference used for the GLM quota monitor. */
+  readonly quotaApiKeyEnv?: string
+  /** GLM quota monitor endpoint. */
+  readonly quotaUrl?: string
+  /** Cache duration for the quota monitor response. */
+  readonly quotaCacheMs?: number
+  /** Maximum milliseconds to wait for one quota monitor request. */
+  readonly quotaTimeoutMs?: number
+  /** Display fallback when no live Agent has a route yet. */
+  readonly defaultProvider?: string
+  /** Display fallback when no live Agent has a model yet. */
+  readonly defaultModel?: string
+}
+```
+
+Source: [`packages/experimental/mobile-agent-console/src/index.ts:59`](../packages/experimental/mobile-agent-console/src/index.ts)
+
 <a id="deepseek-aidsh-experimental-tool-agent-team"></a>
 
 ## `@deepseek-ai/dsh-experimental-tool-agent-team`

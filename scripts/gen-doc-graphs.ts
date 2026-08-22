@@ -487,6 +487,13 @@ const SERVICE_ROLES: ServiceRole[] = [
     note: 'Owns the implicit-root roster, durable peer mailbox, shared task DAG, and continuable-child lifecycle; tool-agent-team contributes the scoped model policy and controls.',
   },
   {
+    key: 'mobileAgentConsole',
+    pkg: 'mobile-agent-console',
+    title: 'Mobile Agent console composition',
+    mode: 'core',
+    note: 'Projects live Agent Teams, Session usage, GLM quota, and project memory into a token-authenticated mobile Web surface; its browser controls reuse the native Session and continuable-subagent faces.',
+  },
+  {
     key: 'jobs',
     pkg: 'jobs',
     title: 'Background job registry',

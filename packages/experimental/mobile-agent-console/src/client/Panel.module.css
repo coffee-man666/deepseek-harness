@@ -1,0 +1,256 @@
+.action {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 32px;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--dsw-alias-label-primary);
+  cursor: pointer;
+  text-align: left;
+}
+
+.action:hover,
+.agentRow:hover {
+  background: var(--dsw-alias-interactive-bg-hover);
+}
+
+.dialog {
+  width: min(860px, 100%);
+  max-height: min(760px, calc(100vh - 48px));
+}
+
+.modalContent {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.toolbar,
+.rowHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.toolbar {
+  margin-bottom: 16px;
+}
+
+.route,
+.muted {
+  color: var(--dsw-alias-label-secondary);
+  font-size: 12px;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  max-height: min(570px, calc(100vh - 210px));
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.wideCard {
+  grid-column: 1 / -1;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--dsw-alias-border-inverted);
+  border-radius: 12px;
+  background: var(--dsw-alias-bg-layer-1);
+}
+
+.card h3 {
+  margin: 0 0 10px;
+  color: var(--dsw-alias-label-primary);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  color: var(--dsw-alias-label-secondary);
+  font-size: 12px;
+}
+
+.metrics b {
+  display: block;
+  margin-top: 2px;
+  color: var(--dsw-alias-label-primary);
+  font-size: 15px;
+}
+
+.agentRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 7px 4px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--dsw-alias-label-primary);
+  text-align: left;
+}
+
+.agentOpen {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.agentOpen:hover {
+  text-decoration: underline;
+}
+
+.agentActions {
+  display: flex;
+  flex: none;
+  gap: 4px;
+}
+
+.agentIdentity {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.agentIdentity b,
+.agentIdentity small,
+.agentStatus,
+.agentUsage {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.agentIdentity b {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.agentIdentity small,
+.agentStatus,
+.agentUsage {
+  color: var(--dsw-alias-label-secondary);
+  font-size: 11px;
+}
+
+.agentStatus,
+.agentUsage {
+  flex: none;
+}
+
+.teamMembers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin-bottom: 8px;
+}
+
+.member,
+.task {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--dsw-alias-label-secondary);
+  font-size: 12px;
+}
+
+.tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.task {
+  color: var(--dsw-alias-label-primary);
+}
+
+.quotaRow {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+  color: var(--dsw-alias-label-primary);
+  font-size: 12px;
+}
+
+.bar {
+  height: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--dsw-alias-interactive-bg-hover);
+}
+
+.bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--dsw-alias-state-info-primary);
+}
+
+.memory {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 7px 0;
+  border-top: 1px solid var(--dsw-alias-border-inverted);
+  color: var(--dsw-alias-label-primary);
+  font-size: 12px;
+  white-space: pre-wrap;
+}
+
+.memory:first-of-type {
+  border-top: 0;
+}
+
+.memoryTags {
+  color: var(--dsw-alias-label-tertiary);
+  font-size: 10px;
+}
+
+.error {
+  margin: 8px 0;
+  color: var(--dsw-alias-state-error-primary);
+  font-size: 12px;
+}
+
+@media (max-width: 640px) {
+  .contentGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .wideCard {
+    grid-column: auto;
+  }
+
+  .agentStatus,
+  .agentUsage {
+    display: none;
+  }
+
+  .agentActions :global(button) {
+    min-width: 0;
+    padding-inline: 6px;
+  }
+}

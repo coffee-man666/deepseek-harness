@@ -277,6 +277,7 @@
     { "path": "./packages/jobs/jobs-local" },
     { "path": "./packages/jobs/tool-jobs" },
     { "path": "./packages/experimental/agent-team" },
+    { "path": "./packages/experimental/mobile-agent-console/tsconfig.host.json" },
     { "path": "./packages/experimental/tool-agent-team" },
     { "path": "./packages/workflow/workflow" },
     { "path": "./packages/workflow/workflow-worker-thread" },

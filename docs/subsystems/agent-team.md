@@ -180,4 +180,40 @@ tryMembership(agent: Agent): TeamMembership | undefined
 Types: [Agent](core.md)
 
 Source: [`packages/experimental/agent-team/src/index.ts:56`](../../packages/experimental/agent-team/src/index.ts)
+
+<a id="ctxmobileagentconsole--mobileagentconsoleservice"></a>
+
+### `ctx.mobileAgentConsole` — `MobileAgentConsoleService`
+
+Host service exposing the mobile Agent console and shared memory.
+
+```ts cordis-catalog
+/**
+ * Store one model-selected memory record for the calling Agent's project.
+ * @param agent - Agent that selected the record and owns its project cwd.
+ * @param content - concise durable fact to store.
+ * @param tags - retrieval tags for the fact.
+ * @returns the durable memory record that was appended.
+ */
+async remember(agent: Agent, content: string, tags: readonly string[]): Promise<MemoryEntry>
+
+/**
+ * Recall relevant memory records for the calling Agent's project.
+ * @param agent - Agent whose project memory should be searched.
+ * @param query - lexical search terms; empty text returns recent records.
+ * @param limit - maximum number of records to return.
+ * @returns matching memory records ordered by relevance and recency.
+ */
+async recall(agent: Agent, query: string, limit: number = 8): Promise<MemoryEntry[]>
+
+/**
+ * Build the current human-facing dashboard snapshot from live registries and durable logs.
+ * @returns the current Agent, Team, usage, memory, route, and quota projection.
+ */
+async snapshot(): Promise<DashboardSnapshot>
+```
+
+Types: [Agent](core.md)
+
+Source: [`packages/experimental/mobile-agent-console/src/index.ts:670`](../../packages/experimental/mobile-agent-console/src/index.ts)
 <!-- END GENERATED cordis-surface -->

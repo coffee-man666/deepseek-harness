@@ -1,0 +1,37 @@
+# Mobile Agent Console overlay for the Web profile. It replaces the dormant
+# pi-ai row with a GLM OpenAI-compatible route, selects GLM-5 for new Agents,
+# and mounts Agent Teams plus the authenticated console service.
+
+- id: llm-pi-ai
+  config:
+    providers:
+      glm:
+        displayName: GLM
+        apiKeyEnv: ZHIPU_API_KEY
+        api: openai-completions
+        baseURL: https://open.bigmodel.cn/api/paas/v4
+        models:
+          - id: glm-5
+            name: GLM-5
+          - id: glm-4.5-air
+            name: GLM-4.5 Air
+
+- id: agent-default-model
+  config:
+    provider: glm
+    model: glm-5
+
+- insert:
+    - id: agent-team
+      name: '@deepseek-ai/dsh-experimental-agent-team'
+    - id: tool-agent-team
+      name: '@deepseek-ai/dsh-experimental-tool-agent-team'
+    - id: mobile-agent-console
+      name: '@deepseek-ai/dsh-experimental-mobile-agent-console'
+      config:
+        gatewayEnabled: true
+        gatewayHost: 0.0.0.0
+        gatewayPort: 3082
+        tokenEnv: DSH_MOBILE_ACCESS_TOKEN
+        quotaApiKeyEnv: ZHIPU_API_KEY
+        quotaTimeoutMs: 5000

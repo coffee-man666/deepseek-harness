@@ -8,5 +8,6 @@
 |---|---|---|
 | `agent-team/` | 隐式 root Agent Teams roster、持久 peer mailbox、共享任务 DAG 与运行时协调 | `ctx.agentTeams` |
 | `tool-agent-team/` | 按 Agent 作用域提供的 Agent Teams 模型工具与协作指引 | — |
+| `mobile-agent-console/` | GLM 路由、Agent Teams 组合、带认证的移动网关、实时面板、用量查看与项目记忆 | `ctx.mobileAgentConsole` |
 
 [子树规则](AGENTS.md)规定依赖隔离、发布排除与 promotion。
