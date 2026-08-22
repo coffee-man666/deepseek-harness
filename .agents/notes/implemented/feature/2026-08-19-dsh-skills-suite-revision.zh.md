@@ -12,7 +12,7 @@ Status: implemented
 
 套件版本 0.3.0 按本地源码修正了原语清单:用 subagent delegation(`ctx.subagents.start()`,进程内 fork/spawn provider)、`llm/stream` 瀑布、`agent/request-error` 配 `dsh-llm-retry`、`dsh-token-meter`、guard 插件替换理想化的名称。解析规则(`$DSH_ROOT` → 常见位置 → GitHub)替换硬编码源码路径。全部套件产物统一到 `dsh-scan/` 根目录,修复了交接路径。`repo-recon` 用宿主无关的"单块 spawn + 推送式完成"原语加宿主映射表和顺序回退表达并行。`harness-runtime-optimizer` 把循环骨架和规则留在 SKILL.md,阶段清单移入 `references/runtime-optimizer-phases.md`,常驻技能体缩到三分之一。报告模板记录目标仓库/分支/HEAD,并为非 DSH 发现和未深入清单增加独立章节——试运行证明这两类内容此前会被丢弃。
 
-两个发布树此前只靠 0.2.0 note 里的文字警告保持同步。`scripts/verify-dsh-skills-sync.ts` 现在双向断言 `packages/skill/skills/skills` 与 `plugins/dsh-skills/skills` 逐字节相等,并校验 `VERSION`、每个 SKILL.md frontmatter、Codex manifest、provider 硬编码 METADATA 之间的版本一致。该 gate 挂入 `doc-sync` 清单。
+两个发布树此前只靠 0.2.0 note 里的文字警告保持同步。`scripts/verify-dsh-skills-sync.ts` 现在双向断言 两个发布树逐字节相等,并校验 `VERSION`、每个 SKILL.md frontmatter、Codex manifest、provider 硬编码 METADATA 之间的版本一致。该 gate 挂入 `doc-sync` 清单。
 
 ## Alternatives considered
 
