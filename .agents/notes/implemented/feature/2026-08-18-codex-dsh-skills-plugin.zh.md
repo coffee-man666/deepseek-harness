@@ -10,9 +10,9 @@ DSH Skills 套件需要 Codex 插件 manifest 和插件根目录下的 skill 布
 
 ## Decision
 
-该套件以 Codex 插件形式放在 [`plugins/dsh-skills`](../../../../plugins/dsh-skills)。`.codex-plugin/plugin.json` 声明 `dsh-skills` 的 `0.2.0` 版本、界面元数据和 `./skills/`；压缩包中的每个非目录条目都在该目录下逐字节保留。这让三个 `SKILL.md` 以及全部 references 和 templates 可用，同时不需要 MCP、app 或 hook 集成。
+该套件以 Codex 插件形式放在 `plugins/dsh-skills`。`.codex-plugin/plugin.json` 声明 `dsh-skills` 的 `0.2.0` 版本、界面元数据和 `./skills/`；压缩包中的每个非目录条目都在该目录下逐字节保留。这让三个 `SKILL.md` 以及全部 references 和 templates 可用，同时不需要 MCP、app 或 hook 集成。
 
-仓库保留 [`@deepseek-ai/dsh-skills`](../../../../packages/skill/skills) 作为 DSH runtime 集成。这两个产物分别面向 Codex 和 DSH 的不同加载器，并共享工作流内容；runtime 提供方的决策记录在[bundled provider 说明](2026-08-18-bundled-dsh-skills-provider.md)中。
+仓库保留 `@deepseek-ai/dsh-skills` 作为 DSH runtime 集成。这两个产物分别面向 Codex 和 DSH 的不同加载器，并共享工作流内容；runtime 提供方的决策记录在[bundled provider 说明](2026-08-18-bundled-dsh-skills-provider.md)中。
 
 仓库不创建个人或仓库 marketplace 条目。本次变更定义插件产物，安装或分发交由明确的 marketplace 或本地路径流程处理。
 

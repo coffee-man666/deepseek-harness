@@ -10,9 +10,9 @@ The DSH Skills suite needs a Codex plugin manifest and plugin-root skill layout 
 
 ## Decision
 
-The suite is packaged at [`plugins/dsh-skills`](../../../../plugins/dsh-skills) as a Codex plugin. `.codex-plugin/plugin.json` declares `dsh-skills` version `0.2.0`, its interface metadata, and `./skills/`; every non-directory archive entry is preserved byte-for-byte beneath that directory. This keeps the three `SKILL.md` files and all references and templates available without MCP, app, or hook integrations.
+The suite is packaged at `plugins/dsh-skills` as a Codex plugin. `.codex-plugin/plugin.json` declares `dsh-skills` version `0.2.0`, its interface metadata, and `./skills/`; every non-directory archive entry is preserved byte-for-byte beneath that directory. This keeps the three `SKILL.md` files and all references and templates available without MCP, app, or hook integrations.
 
-The repository retains [`@deepseek-ai/dsh-skills`](../../../../packages/skill/skills) as the DSH runtime integration. These are separate loader artifacts for Codex and DSH and share the workflow content; the runtime provider decision is recorded in [the bundled provider note](2026-08-18-bundled-dsh-skills-provider.md).
+The repository retains `@deepseek-ai/dsh-skills` as the DSH runtime integration. These are separate loader artifacts for Codex and DSH and share the workflow content; the runtime provider decision is recorded in [the bundled provider note](2026-08-18-bundled-dsh-skills-provider.md).
 
 The repository does not create a personal or repo marketplace entry. This change defines the plugin artifact and leaves installation or distribution to an explicit marketplace or local-path workflow.
 
