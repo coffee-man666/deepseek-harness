@@ -2,5 +2,5 @@
 # side as of the last confirmed-consistent state. Both languages carry equal authority;
 # after editing either side, bring the other along and re-record with:
 #   pnpm run verify-translation-pairing --write examples/lumen-pipeline/README.md
-README.md: 7acf2d0975b0277eec1fb110fb4246210379b843
-README.zh.md: 1becc6a2d257b63170ecde536470597566210f89
+README.md: 7a572aa39f5cecd08218cbbf2ac95dc9f39e71ee
+README.zh.md: 6385bd0177973c26d2ea01c0bcd7bd87db21a5c0

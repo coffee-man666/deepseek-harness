@@ -10,6 +10,20 @@ DSH 支撑的传输层。每次 `llmStructured` 调用变成一个带 `outputSch
 
 目标项目的 [`dsh/` 目录](https://github.com/coffee-man666/vibe-report-dashboard/tree/main/dsh)发布了实测对比（原版栈 vs 本门面，含注入 429 的可靠性实验与会话日志重放），附带可复现的 runner 和可视化对比页。
 
+## 端点配置(环境变量驱动)
+
+| 变量 | 含义 | 默认值 |
+|---|---|---|
+| `DSH_LLM_PROVIDER` | provider 路由名 | `deepseek` |
+| `DSH_LLM_API` | 线协议(`openai-completions` / `anthropic-messages`) | `openai-completions` |
+| `DSH_LLM_BASE_URL` | 端点 base URL(故障代理沿用 `DSH_PIPELINE_BASE_URL`) | `https://api.deepseek.com/v1` |
+| `DSH_LLM_API_KEY_ENV` | 存放凭据的环境变量名 | `DEEPSEEK_API_KEY` |
+| `DSH_LLM_MODELS` | 模型目录 CSV `id[:上下文窗[:maxTokens]]` | `deepseek-chat:65536:8192,deepseek-reasoner:65536:8192` |
+| `DSH_MODEL_DEFAULT` | 各阶段默认模型 | `deepseek-chat` |
+| `DSH_MODEL_STRONG` | `--strong-extract` 下 extract/compose 的模型 | `deepseek-reasoner` |
+
+目标项目的原版栈通过其自身的 `LUMEN_DEFAULT_*` 变量驱动。
+
 ## 运行
 
 ```sh

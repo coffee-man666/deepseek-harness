@@ -15,6 +15,20 @@ vs this facade, including injected-429 reliability runs and session-log
 replay) in its [`dsh/` directory](https://github.com/coffee-man666/vibe-report-dashboard/tree/main/dsh),
 with reproducible runners and a visual comparison page.
 
+## Endpoint configuration (env-driven)
+
+| Variable | Meaning | Default |
+|---|---|---|
+| `DSH_LLM_PROVIDER` | provider route name | `deepseek` |
+| `DSH_LLM_API` | wire protocol (`openai-completions` / `anthropic-messages`) | `openai-completions` |
+| `DSH_LLM_BASE_URL` | endpoint base URL (`DSH_PIPELINE_BASE_URL` honored for the fault proxy) | `https://api.deepseek.com/v1` |
+| `DSH_LLM_API_KEY_ENV` | name of the env var holding the credential | `DEEPSEEK_API_KEY` |
+| `DSH_LLM_MODELS` | model catalog CSV `id[:contextWindow[:maxTokens]]` | `deepseek-chat:65536:8192,deepseek-reasoner:65536:8192` |
+| `DSH_MODEL_DEFAULT` | default model per stage | `deepseek-chat` |
+| `DSH_MODEL_STRONG` | model for extract/compose under `--strong-extract` | `deepseek-reasoner` |
+
+The target project's original stack is env-driven through its own `LUMEN_DEFAULT_*` variables.
+
 ## Run it
 
 ```sh

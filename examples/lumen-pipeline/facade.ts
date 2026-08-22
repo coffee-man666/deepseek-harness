@@ -56,6 +56,16 @@ export interface Facade {
   dispose(): Promise<void>
 }
 
+// Endpoint/model selection, shared with cordis.yml through the same env vars:
+// DSH_LLM_PROVIDER, DSH_MODEL_DEFAULT, DSH_MODEL_STRONG, DSH_LLM_BASE_URL
+// (DSH_PIPELINE_BASE_URL honored for the fault proxy). Defaults = DeepSeek official.
+const LLM = {
+  provider: process.env.DSH_LLM_PROVIDER ?? 'deepseek',
+  defaultModel: process.env.DSH_MODEL_DEFAULT ?? 'deepseek-chat',
+  strongModel: process.env.DSH_MODEL_STRONG ?? 'deepseek-reasoner',
+  baseUrl: process.env.DSH_LLM_BASE_URL ?? process.env.DSH_PIPELINE_BASE_URL ?? 'https://api.deepseek.com/v1',
+} as const
+
 export async function startFacade(vibeRoot: string, configPath = resolve(import.meta.dirname, 'cordis.yml')): Promise<Facade> {
   const ctx: Context = await boot('lumen-pipeline', configPath)
 
@@ -135,21 +145,21 @@ export async function startFacade(vibeRoot: string, configPath = resolve(import.
     let currentStage = '(init)'
     const profile = { ...defaultProvider() }
     profile.schema = 'openai'
-    profile.base_url = process.env.DSH_PIPELINE_BASE_URL ?? 'https://api.deepseek.com/v1'
-    profile.model = 'deepseek-chat'
+    profile.base_url = LLM.baseUrl
+    profile.model = LLM.defaultModel
     profile.capabilities = { ...(profile.capabilities ?? {}), structured_output: true }
 
     const dshCall = async (profileArg: unknown, req: Record<string, unknown>): Promise<Record<string, unknown>> => {
       void profileArg
       const stage = currentStage
-      const model = input.strongExtract && (stage === 'extract' || stage === 'compose') ? 'deepseek-reasoner' : 'deepseek-chat'
+      const model = input.strongExtract && (stage === 'extract' || stage === 'compose') ? LLM.strongModel : LLM.defaultModel
       const params = req.params as { max_tokens: number }
       const promptText = foldPrompt(req.system as string | undefined, req.messages as Array<{ role: string; content: unknown }>)
       const base = {
         prompt: [{ type: 'text', text: promptText }],
         parent,
         signal: AbortSignal.timeout(300_000),
-        agentOptions: { provider: 'deepseek', model, maxTokens: params.max_tokens },
+        agentOptions: { provider: LLM.provider, model, maxTokens: params.max_tokens },
         label: `lumen-${stage}`,
       }
       const stageStarted = Date.now()
